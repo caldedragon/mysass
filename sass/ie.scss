@@ -1,0 +1,99 @@
+/* Welcome to Compass. Use this file to write IE specific override styles.
+ * Import this file using the following HTML or equivalent:
+ * <!--[if IE]>
+ *   <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+ * <![endif]--> */
+
+nav {
+  ul {
+    margin: 0;
+    padding:0;
+    list-style: none;
+
+  }
+}
+
+li {
+  display: inline-block;
+
+}
+
+
+a {
+  display: block;
+  padding: 6px 12px;
+  text-decoration: none;
+}
+
+/*Variables*/
+
+$defaultLinkColor: #46EAC2;
+
+a {
+  color: $defaultLinkColor;
+}
+
+
+/*Operation and default functions*/
+$defaultWindowSize: 960px;
+
+#nav.size {
+
+  float: right;
+  width: $defaultWindowSize / 3;
+
+  a {
+    color: lighten($defaultLinkColor, 10%);
+  }
+
+}
+
+/*Mixins*/
+
+@mixin default-box {
+  $borderColor: #666;
+  border: 1px solid $borderColor;
+  clear: both;
+  display: block;
+  margin: 5px 0;
+  padding: 5px 10px;
+
+}
+footer, header {@include default-box;
+}
+
+/*ARGUMENTS*/
+
+@mixin default-box($color, $boxModel, $padding) {
+  $borderColor: $color;
+  border: 1px solid $borderColor;
+  clear: both;
+  display: $boxModel;
+  margin: 5px 0;
+  padding: 5px $padding;
+}
+header{ @include default-box(#666, block, 10px);}
+footer{ @include default-box(#999, inline-block, 5px);}
+
+
+/*Selector Inheritance*/
+
+.error {
+  border: 1px #F00;
+  background: #FDD;
+}
+
+.badError {
+  @extend .error;
+  border-width: 3px;
+}
+
+/*Import Stylesheet*/
+
+
+/*  @import 'partials/_val';
+
+  body {
+    color: $color;
+  }
+  $color: #333;*/
